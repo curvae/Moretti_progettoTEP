@@ -1,0 +1,11 @@
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\bin\Debug\provaTask.exe.config
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\bin\Debug\provaTask.exe
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\bin\Debug\provaTask.pdb
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.csproj.AssemblyReference.cache
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.csproj.SuggestedBindingRedirects.cache
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.Form1.resources
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.Properties.Resources.resources
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.csproj.GenerateResource.cache
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.csproj.CoreCompileInputs.cache
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.exe
+C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.pdb
