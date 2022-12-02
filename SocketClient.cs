@@ -18,7 +18,7 @@ namespace provaTask
 {
     internal class SocketClient
     {
-            public static void StartClient(int numPlayer,Panel player1, Panel player2, Label score_p1, Label lbl_input_p1, Label score_p2, Label lbl_input_p2)
+            public static void StartClient(int numPlayer,Panel player1, Panel player2, Label score_p1, Label lbl_input_p1, Label score_p2, Label lbl_input_p2, Panel panel_ball, Label label_score_p1, Label label_score_p2)
             {
                 byte[] bytes = new byte[1024];
                 int count = 0;
@@ -57,7 +57,6 @@ namespace provaTask
                             data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                         }
                         string prova = "";
-                        string prova2 = "";
 
                         prova = data.Substring(0, data.IndexOf("$"));
 
@@ -66,6 +65,8 @@ namespace provaTask
                             int l = data.Length;
                             string lt1 = data.Substring(l - 3, 1);
                             string lt2 = data.Substring(l - 2, 1);
+                            string lb1 = data.Substring(l - 5, 1);
+                            string lb2 = data.Substring(l - 4, 1);
 
                             //prova = data.Substring(0,data.IndexOf(";"));
                             //prova2 = data.Substring(data.IndexOf(";")+1, data.IndexOf("$"));
@@ -73,8 +74,17 @@ namespace provaTask
                             //prova2 = data.Substring(2, 2);
                             player1.Top = Convert.ToInt32(data.Substring(0, Convert.ToInt32(lt1)));//player2.Top + Convert.ToInt32(prova2);
                             player2.Top = Convert.ToInt32(data.Substring(Convert.ToInt32(lt1), Convert.ToInt32(lt2)));//player1.Top + Convert.ToInt32(prova);
+                            //panel_ball.Left = Convert.ToInt32(data.Substring(Convert.ToInt32(lt2), Convert.ToInt32(lb1)));
+                            lbl_input_p2.Text = data.Substring(Convert.ToInt32(lt1) + Convert.ToInt32(lt2), Convert.ToInt32(lb1));
+                            panel_ball.Left = Convert.ToInt32(data.Substring(Convert.ToInt32(lt1) + Convert.ToInt32(lt2), Convert.ToInt32(lb1)));
+                            panel_ball.Top = Convert.ToInt32(data.Substring(Convert.ToInt32(lt1) + Convert.ToInt32(lt2) + Convert.ToInt32(lb1), Convert.ToInt32(lb2)));
                         }
-                        
+
+                        if(panel_ball.Left > - 5 && panel_ball.Left < 5)
+                            label_score_p2.Text = Convert.ToString(Convert.ToInt32(label_score_p2.Text) + 1);
+                        if (panel_ball.Right > -5 && panel_ball.Right < 5)
+                            label_score_p1.Text = Convert.ToString(Convert.ToInt32(label_score_p1.Text) + 1);
+
                         if (prova == "1")
                         {
                             score_p2.Text = prova;
@@ -85,7 +95,7 @@ namespace provaTask
                         }
                         score_p1.Text = prova;
                         Console.WriteLine("Messaggio ricevuto: " + data);
-                        System.Threading.Thread.Sleep(100);
+                        System.Threading.Thread.Sleep(1);
                         count++;
                     }
 
@@ -101,10 +111,11 @@ namespace provaTask
                     {
                         Console.WriteLine("SocketException : {0}", se.ToString());
                     }
-                    catch (Exception e)
+                    /*
+                     * catch (Exception e)
                     {
                         Console.WriteLine("Unexpected exception : {0}", e.ToString());
-                    }
+                    }*/
 
                 }
                 catch (Exception e)
