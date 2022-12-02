@@ -83,6 +83,9 @@ namespace ServerProvaTask
             byte[] msg;
             string palla = "t-2l-2";
             bool s = true;
+            bool incScore = true;
+            int punteggio_p1 = 0;
+            int punteggio_p2 = 0;
             //handler.Send(Encoding.ASCII.GetBytes(Convert.ToString(player_number)));
             while (data != "Quit$")
             {
@@ -110,8 +113,6 @@ namespace ServerProvaTask
                 
                 if (textboxinutileAEEW.Text == "3")
                 {
-                    //if(palla=="t-2")
-                    //label_output_ball_left.Text=Convert.ToString(Convert.ToInt32(label_output_ball_left.Text) - 1);
                     if (Convert.ToInt32(label_output_ball_left.Text) > 250 && Convert.ToInt32(label_output_ball_left.Text) < 350)
                         s = true;
                     if (s == true)
@@ -243,8 +244,28 @@ namespace ServerProvaTask
                     count++;
                 }
 
-                if (data == "Quit$")
-                    textboxinutileAEEW.Text = Convert.ToString(Convert.ToInt32(textboxinutileAEEW.Text) - 1);
+                if (Convert.ToInt32(label_output_ball_left.Text) > 200 && Convert.ToInt32(label_output_ball_left.Text) < 400)
+                    incScore = true;
+
+                if (Convert.ToInt32(label_output_ball_left.Text) > 5 && Convert.ToInt32(label_output_ball_left.Text) < 25 && incScore == true)        //incremento dello score
+                {
+                    punteggio_p2 = punteggio_p2 + 1;
+                    incScore = false;
+                }
+                if (Convert.ToInt32(label_output_ball_left.Text) > 550 && Convert.ToInt32(label_output_ball_left.Text) < 570 && incScore == true)
+                {
+                    punteggio_p1 = punteggio_p1 + 1;
+                    incScore = false;
+                }
+
+                if (punteggio_p1 == 5 || punteggio_p2 == 5)
+                {
+                    textboxinutileAEEW.Text = "1";
+                    label_output.Text = "+0";
+                    label_output_2.Text = "190";
+                    label_output_ball_left.Text = "290";
+                    label_output_ball_top.Text = "180";
+                }
                 
                 clientSocket.Send(msg);
             }
@@ -253,6 +274,7 @@ namespace ServerProvaTask
             data = "";
 
         }
+
     }
 }
 
