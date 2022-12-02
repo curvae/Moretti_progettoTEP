@@ -90,7 +90,7 @@ namespace ServerProvaTask
                 data = "";
                 while (data.IndexOf("$") == -1)
                 {
-                    int bytesRec = handler.Receive(bytes);
+                    int bytesRec = clientSocket.Receive(bytes);
                     data += Encoding.ASCII.GetString(bytes, 0, bytesRec);
                 }
                 
@@ -121,8 +121,8 @@ namespace ServerProvaTask
                             if (Convert.ToInt32(label_output_ball_left.Text) > 100 && Convert.ToInt32(label_output_ball_left.Text) < 110)
                             {
                                 s = false;
-                                palla = "t+2l+2";
-                                /*if (palla.IndexOf("l+2") != -1)
+                                //palla = "t+2l+2";
+                                if (palla.IndexOf("l+2") != -1)
                                 {
                                     palla = "t+2l+2";
                                 }
@@ -130,16 +130,6 @@ namespace ServerProvaTask
                                 {
                                     palla = "t+2l-2";
                                 }
-                                if (palla == "t-2")
-                                {
-                                    palla = "t+2";
-                                    if (data.Substring(1, 1) == "w")
-                                        palla = palla + "l-2";
-                                    if (data.Substring(1, 1) == "s")
-                                        palla = palla + "l+2";
-                                }*/
-
-                                //label_output_ball_left.Text = Convert.ToString(Convert.ToInt32(label_output_ball_left.Text) + 2);
                             }
                         }
                         if ((Convert.ToInt32(label_output_2.Text) - 10) < Convert.ToInt32(label_output_ball_top.Text) && (Convert.ToInt32(label_output_2.Text) + 100) > Convert.ToInt32(label_output_ball_top.Text))
@@ -147,11 +137,11 @@ namespace ServerProvaTask
                             if (Convert.ToInt32(label_output_ball_left.Text) > 480 && Convert.ToInt32(label_output_ball_left.Text) < 490)
                             {
                                 s = false;
-                                palla = "t-2l-2";
-                                /*if (palla.IndexOf("l-2") != -1)
+                                //palla = "t-2l-2";
+                                if (palla.IndexOf("l-2") != -1)
                                     palla = "t-2l-2";
                                 if (palla.IndexOf("l+2") != -1)
-                                    palla = "t-2l+2";*/
+                                    palla = "t-2l+2";
                                 //label_output_ball_left.Text = Convert.ToString(Convert.ToInt32(label_output_ball_left.Text) + 2);
                             }
                         }
@@ -212,43 +202,29 @@ namespace ServerProvaTask
                 {
                     if (data.Substring(0, 1) == "1")
                     {
-                        //label_output.Text = "-5";
                         if(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1)))>5)
                             label_output.Text = Convert.ToString(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1))) - 4);                           
                     }
                     if (data.Substring(0, 1) == "2")
                     {
-                        //label_output_2.Text = "-5";
                         if(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2)))>5)
                             label_output_2.Text = Convert.ToString(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2))) - 4);
                     }
-                    /*l1 = label_output.Text.Length;
-                    l2 = label_output_2.Text.Length;
-                    l3 = label_output_ball_left.Text.Length;
-                    l4 = label_output_ball_top.Text.Length;*/
-                    //msg = Encoding.ASCII.GetBytes(label_output.Text + label_output_2.Text + label_output_ball_left.Text + label_output_ball_top.Text + Convert.ToString(l3) + Convert.ToString(l4) + Convert.ToString(l1) + Convert.ToString(l2) + "$");
-                    //msg = Encoding.ASCII.GetBytes(label_output.Text+"$");
+
                 }
                 if (data.Substring(1, 1) == "s")
                 {
                     if (data.Substring(0, 1) == "1")
                     {
-                        //label_output.Text = "+5";
                         if(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1)))<300)
                             label_output.Text = Convert.ToString(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1))) + 4);
                     }
                     if (data.Substring(0, 1) == "2")
                     {
-                        //label_output_2.Text = "+5";
                         if(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2)))<300)
                             label_output_2.Text = Convert.ToString(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2))) + 4);
                     }
-                    /*l1 = label_output.Text.Length;
-                    l2 = label_output_2.Text.Length;
-                    l3 = label_output_ball_left.Text.Length;
-                    l4 = label_output_ball_top.Text.Length;*/
-                    //msg = Encoding.ASCII.GetBytes(label_output.Text + label_output_2.Text + label_output_ball_left.Text + label_output_ball_top.Text + Convert.ToString(l3) + Convert.ToString(l4) + Convert.ToString(l1) + Convert.ToString(l2) + "$");
-                    //msg = Encoding.ASCII.GetBytes(label_output.Text + "$");
+
                 }
                 l1 = label_output.Text.Length;
                 l2 = label_output_2.Text.Length;
@@ -268,10 +244,10 @@ namespace ServerProvaTask
                 }
 
                 
-                handler.Send(msg);
+                clientSocket.Send(msg);
             }
-            handler.Shutdown(SocketShutdown.Both);
-            handler.Close();
+            clientSocket.Shutdown(SocketShutdown.Both);
+            clientSocket.Close();
             data = "";
 
         }
