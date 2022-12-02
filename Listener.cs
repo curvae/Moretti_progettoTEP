@@ -22,7 +22,7 @@ namespace ServerProvaTask
         public static string data = null;
         public static byte[] bytes = new Byte[1024];
 
-        public static async void StartListening(int player_number, Label textboxinutileAEEW, Label label_output, Label label_output_2)
+        public static async void StartListening(int player_number, Label textboxinutileAEEW, Label label_output, Label label_output_2, Label label_output_ball_top, Label label_output_ball_left)
         {
 
             IPAddress ipAddress = System.Net.IPAddress.Parse("127.0.0.1");
@@ -45,7 +45,7 @@ namespace ServerProvaTask
                     Socket handler = listener.Accept();
                     ClientManager clientThread = new ClientManager(handler);
 
-                    Task taskServingClient = Task.Run(() => { clientThread.doClient(handler, player_number, textboxinutileAEEW, label_output, label_output_2); });
+                    Task taskServingClient = Task.Run(() => { clientThread.doClient(handler, player_number, textboxinutileAEEW, label_output, label_output_2, label_output_ball_top, label_output_ball_left); });
 
                 }
 
@@ -76,11 +76,13 @@ namespace ServerProvaTask
             this.clientSocket = clientSocket;
         }
 
-        public void doClient(Socket handler, int player_number, Label textboxinutileAEEW, Label label_output, Label label_output_2)
+        public void doClient(Socket handler, int player_number, Label textboxinutileAEEW, Label label_output, Label label_output_2, Label label_output_ball_top, Label label_output_ball_left)
         {
 
             int count = 0;
             byte[] msg;
+            string palla = "t-2l-2";
+            bool s = true;
             //handler.Send(Encoding.ASCII.GetBytes(Convert.ToString(player_number)));
             while (data != "Quit$")
             {
@@ -97,29 +99,134 @@ namespace ServerProvaTask
                 string lt2 = data.Substring(l - 2, 1);
                 int l1 = 0;
                 int l2 = 0;
+                int l3 = 0;
+                int l4 = 0;
 
                 // 0 1 2 3 4 5 6 7 8 09 10
                 // 1 2 3 4 5 6 7 8 9 10 11
                 //                -3 -2 -1
 
                 msg = Encoding.ASCII.GetBytes("");
+                
+                if (textboxinutileAEEW.Text == "3")
+                {
+                    //if(palla=="t-2")
+                    //label_output_ball_left.Text=Convert.ToString(Convert.ToInt32(label_output_ball_left.Text) - 1);
+                    if (Convert.ToInt32(label_output_ball_left.Text) > 250 && Convert.ToInt32(label_output_ball_left.Text) < 350)
+                        s = true;
+                    if (s == true)
+                    {
+                        if ((Convert.ToInt32(label_output.Text) - 10) < Convert.ToInt32(label_output_ball_top.Text) && (Convert.ToInt32(label_output.Text) + 100) > Convert.ToInt32(label_output_ball_top.Text))
+                        {
+                            if (Convert.ToInt32(label_output_ball_left.Text) > 100 && Convert.ToInt32(label_output_ball_left.Text) < 110)
+                            {
+                                s = false;
+                                palla = "t+2l+2";
+                                /*if (palla.IndexOf("l+2") != -1)
+                                {
+                                    palla = "t+2l+2";
+                                }
+                                if (palla.IndexOf("l-2") != -1)
+                                {
+                                    palla = "t+2l-2";
+                                }
+                                if (palla == "t-2")
+                                {
+                                    palla = "t+2";
+                                    if (data.Substring(1, 1) == "w")
+                                        palla = palla + "l-2";
+                                    if (data.Substring(1, 1) == "s")
+                                        palla = palla + "l+2";
+                                }*/
+
+                                //label_output_ball_left.Text = Convert.ToString(Convert.ToInt32(label_output_ball_left.Text) + 2);
+                            }
+                        }
+                        if ((Convert.ToInt32(label_output_2.Text) - 10) < Convert.ToInt32(label_output_ball_top.Text) && (Convert.ToInt32(label_output_2.Text) + 100) > Convert.ToInt32(label_output_ball_top.Text))
+                        {
+                            if (Convert.ToInt32(label_output_ball_left.Text) > 480 && Convert.ToInt32(label_output_ball_left.Text) < 490)
+                            {
+                                s = false;
+                                palla = "t-2l-2";
+                                /*if (palla.IndexOf("l-2") != -1)
+                                    palla = "t-2l-2";
+                                if (palla.IndexOf("l+2") != -1)
+                                    palla = "t-2l+2";*/
+                                //label_output_ball_left.Text = Convert.ToString(Convert.ToInt32(label_output_ball_left.Text) + 2);
+                            }
+                        }
+                    }
+                        if (Convert.ToInt32(label_output_ball_top.Text) > 0 && Convert.ToInt32(label_output_ball_top.Text) < 10)
+                        {
+                            if (palla.IndexOf("t+2") != -1)
+                            {
+                                palla = "t+2l+2";
+                            }
+                            if (palla.IndexOf("t-2") != -1)
+                            {
+                                palla = "t-2l+2";
+                            }
+                        }
+                        if (Convert.ToInt32(label_output_ball_top.Text) > 340 && Convert.ToInt32(label_output_ball_top.Text) < 350)
+                        {
+                            if (palla.IndexOf("t+2") != -1)
+                            {
+                                palla = "t+2l-2";
+                            }
+                            if (palla.IndexOf("t-2") != -1)
+                            {
+                                palla = "t-2l-2";
+                            }
+
+                        }
+                    
+                        
+                    if(Convert.ToInt32(label_output_ball_left.Text) > -5 && Convert.ToInt32(label_output_ball_left.Text) < 5)
+                    {
+                        label_output_ball_top.Text = "180";
+                        label_output_ball_left.Text = "290";
+                        palla = "t-2l-2";
+                    }
+
+                    if (Convert.ToInt32(label_output_ball_left.Text) > 520 && Convert.ToInt32(label_output_ball_left.Text) < 530)
+                    {
+                        label_output_ball_top.Text = "180";
+                        label_output_ball_left.Text = "290";
+                        palla = "t-2l-2";
+                    }
+
+                    if (palla.IndexOf("l-2") != -1)
+                        label_output_ball_top.Text = Convert.ToString(Convert.ToInt32(label_output_ball_top.Text) - 1);
+
+                    if (palla.IndexOf("l+2") != -1)
+                        label_output_ball_top.Text = Convert.ToString(Convert.ToInt32(label_output_ball_top.Text) + 1);
+
+                    if (palla.IndexOf("t+2") != -1)
+                        label_output_ball_left.Text = Convert.ToString(Convert.ToInt32(label_output_ball_left.Text) + 2);
+
+                    if (palla.IndexOf("t-2") != -1)
+                        label_output_ball_left.Text = Convert.ToString(Convert.ToInt32(label_output_ball_left.Text) - 2);
+
+                }
                 if (data.Substring(1, 1) == "w")
                 {
                     if (data.Substring(0, 1) == "1")
                     {
                         //label_output.Text = "-5";
                         if(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1)))>5)
-                            label_output.Text = Convert.ToString(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1))) - 5);
+                            label_output.Text = Convert.ToString(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1))) - 4);                           
                     }
                     if (data.Substring(0, 1) == "2")
                     {
                         //label_output_2.Text = "-5";
                         if(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2)))>5)
-                            label_output_2.Text = Convert.ToString(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2))) - 5);
+                            label_output_2.Text = Convert.ToString(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2))) - 4);
                     }
-                    l1 = label_output.Text.Length;
+                    /*l1 = label_output.Text.Length;
                     l2 = label_output_2.Text.Length;
-                    msg = Encoding.ASCII.GetBytes(label_output.Text + label_output_2.Text + Convert.ToString(l1) + Convert.ToString(l2) + "$");
+                    l3 = label_output_ball_left.Text.Length;
+                    l4 = label_output_ball_top.Text.Length;*/
+                    //msg = Encoding.ASCII.GetBytes(label_output.Text + label_output_2.Text + label_output_ball_left.Text + label_output_ball_top.Text + Convert.ToString(l3) + Convert.ToString(l4) + Convert.ToString(l1) + Convert.ToString(l2) + "$");
                     //msg = Encoding.ASCII.GetBytes(label_output.Text+"$");
                 }
                 if (data.Substring(1, 1) == "s")
@@ -128,19 +235,26 @@ namespace ServerProvaTask
                     {
                         //label_output.Text = "+5";
                         if(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1)))<300)
-                            label_output.Text = Convert.ToString(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1))) + 5);
+                            label_output.Text = Convert.ToString(Convert.ToInt32(data.Substring(2, Convert.ToInt32(lt1))) + 4);
                     }
                     if (data.Substring(0, 1) == "2")
                     {
                         //label_output_2.Text = "+5";
                         if(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2)))<300)
-                            label_output_2.Text = Convert.ToString(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2))) + 5);
+                            label_output_2.Text = Convert.ToString(Convert.ToInt32(data.Substring(2 + Convert.ToInt32(lt1), Convert.ToInt32(lt2))) + 4);
                     }
-                    l1 = label_output.Text.Length;
+                    /*l1 = label_output.Text.Length;
                     l2 = label_output_2.Text.Length;
-                    msg = Encoding.ASCII.GetBytes(label_output.Text + label_output_2.Text + Convert.ToString(l1) + Convert.ToString(l2) + "$");
+                    l3 = label_output_ball_left.Text.Length;
+                    l4 = label_output_ball_top.Text.Length;*/
+                    //msg = Encoding.ASCII.GetBytes(label_output.Text + label_output_2.Text + label_output_ball_left.Text + label_output_ball_top.Text + Convert.ToString(l3) + Convert.ToString(l4) + Convert.ToString(l1) + Convert.ToString(l2) + "$");
                     //msg = Encoding.ASCII.GetBytes(label_output.Text + "$");
                 }
+                l1 = label_output.Text.Length;
+                l2 = label_output_2.Text.Length;
+                l3 = label_output_ball_left.Text.Length;
+                l4 = label_output_ball_top.Text.Length;
+                msg = Encoding.ASCII.GetBytes(label_output.Text + label_output_2.Text + label_output_ball_left.Text + label_output_ball_top.Text + Convert.ToString(l3) + Convert.ToString(l4) + Convert.ToString(l1) + Convert.ToString(l2) + "$");
                 Console.WriteLine("Messaggio ricevuto : {0}", data);
                 
                 if (count == 0)

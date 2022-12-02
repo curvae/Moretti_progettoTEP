@@ -34,6 +34,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label_output = new System.Windows.Forms.Label();
             this.label_output_2 = new System.Windows.Forms.Label();
+            this.label_output_ball_top = new System.Windows.Forms.Label();
+            this.label_output_ball_left = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // textBox1
@@ -90,11 +92,31 @@
             this.label_output_2.TabIndex = 5;
             this.label_output_2.Text = "190";
             // 
+            // label_output_ball_top
+            // 
+            this.label_output_ball_top.AutoSize = true;
+            this.label_output_ball_top.Location = new System.Drawing.Point(425, 121);
+            this.label_output_ball_top.Name = "label_output_ball_top";
+            this.label_output_ball_top.Size = new System.Drawing.Size(28, 16);
+            this.label_output_ball_top.TabIndex = 6;
+            this.label_output_ball_top.Text = "180";
+            // 
+            // label_output_ball_left
+            // 
+            this.label_output_ball_left.AutoSize = true;
+            this.label_output_ball_left.Location = new System.Drawing.Point(482, 121);
+            this.label_output_ball_left.Name = "label_output_ball_left";
+            this.label_output_ball_left.Size = new System.Drawing.Size(28, 16);
+            this.label_output_ball_left.TabIndex = 7;
+            this.label_output_ball_left.Text = "290";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label_output_ball_left);
+            this.Controls.Add(this.label_output_ball_top);
             this.Controls.Add(this.label_output_2);
             this.Controls.Add(this.label_output);
             this.Controls.Add(this.label1);
@@ -117,6 +139,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label_output;
         private System.Windows.Forms.Label label_output_2;
+        private System.Windows.Forms.Label label_output_ball_top;
+        private System.Windows.Forms.Label label_output_ball_left;
     }
 }
 

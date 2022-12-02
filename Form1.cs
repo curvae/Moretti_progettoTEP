@@ -29,7 +29,7 @@ namespace ServerProvaTask
         private void button1_Click(object sender, EventArgs e)
         {
             int player_number = 1;
-            Task taskServingClient = Task.Run(() => { Listener.StartListening(player_number, textboxinutileAEEW, label_output, label_output_2); });
+            Task taskServingClient = Task.Run(() => { Listener.StartListening(player_number, textboxinutileAEEW, label_output, label_output_2, label_output_ball_top, label_output_ball_left); });
         }
 
         private void label_output_Click(object sender, EventArgs e)
