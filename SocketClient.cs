@@ -27,6 +27,7 @@ namespace provaTask
                 {
                     string data = "";
                     bool incScore = true;
+                    bool nf = true;
 
                     IPAddress ipAddress = System.Net.IPAddress.Parse("127.0.0.1");
                     IPEndPoint remoteEP = new IPEndPoint(ipAddress, 5000);
@@ -58,9 +59,12 @@ namespace provaTask
                             panel_fine_partita.Visible = true;
 
                             System.Threading.Thread.Sleep(3000);
-
-                            Form1 f1 = new Form1();
-                            f1.ShowDialog();
+                            if (nf == true)
+                            {
+                                nf = false;
+                                Form1 f1 = new Form1();
+                                f1.ShowDialog();
+                            }
                         }
                         byte[] msg = Encoding.ASCII.GetBytes(stringa_da_inviare);   //score_p2 = numero giocatore (1 o 2)   lbl_input_p1 = input del client
 
