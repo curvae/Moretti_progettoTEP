@@ -116,9 +116,9 @@ namespace ServerProvaTask
                         s = true;
                     if (s == true)
                     {
-                        if ((Convert.ToInt32(label_output.Text) - 10) < Convert.ToInt32(label_output_ball_top.Text) && (Convert.ToInt32(label_output.Text) + 100) > Convert.ToInt32(label_output_ball_top.Text))
+                        if ((Convert.ToInt32(label_output.Text) - 20) < Convert.ToInt32(label_output_ball_top.Text) && (Convert.ToInt32(label_output.Text) + 90) > Convert.ToInt32(label_output_ball_top.Text))
                         {
-                            if (Convert.ToInt32(label_output_ball_left.Text) > 100 && Convert.ToInt32(label_output_ball_left.Text) < 110)
+                            if (Convert.ToInt32(label_output_ball_left.Text) > 80 && Convert.ToInt32(label_output_ball_left.Text) < 90)
                             {
                                 s = false;
                                 //palla = "t+2l+2";
@@ -132,9 +132,9 @@ namespace ServerProvaTask
                                 }
                             }
                         }
-                        if ((Convert.ToInt32(label_output_2.Text) - 10) < Convert.ToInt32(label_output_ball_top.Text) && (Convert.ToInt32(label_output_2.Text) + 100) > Convert.ToInt32(label_output_ball_top.Text))
+                        if ((Convert.ToInt32(label_output_2.Text) - 20) < Convert.ToInt32(label_output_ball_top.Text) && (Convert.ToInt32(label_output_2.Text) + 90) > Convert.ToInt32(label_output_ball_top.Text))
                         {
-                            if (Convert.ToInt32(label_output_ball_left.Text) > 480 && Convert.ToInt32(label_output_ball_left.Text) < 490)
+                            if (Convert.ToInt32(label_output_ball_left.Text) > 500 && Convert.ToInt32(label_output_ball_left.Text) < 510)
                             {
                                 s = false;
                                 //palla = "t-2l-2";
@@ -157,7 +157,7 @@ namespace ServerProvaTask
                                 palla = "t-2l+2";
                             }
                         }
-                        if (Convert.ToInt32(label_output_ball_top.Text) > 340 && Convert.ToInt32(label_output_ball_top.Text) < 350)
+                        if (Convert.ToInt32(label_output_ball_top.Text) > 360 && Convert.ToInt32(label_output_ball_top.Text) < 370)
                         {
                             if (palla.IndexOf("t+2") != -1)
                             {
@@ -178,7 +178,7 @@ namespace ServerProvaTask
                         palla = "t-2l-2";
                     }
 
-                    if (Convert.ToInt32(label_output_ball_left.Text) > 520 && Convert.ToInt32(label_output_ball_left.Text) < 530)
+                    if (Convert.ToInt32(label_output_ball_left.Text) > 570 && Convert.ToInt32(label_output_ball_left.Text) < 580)
                     {
                         label_output_ball_top.Text = "180";
                         label_output_ball_left.Text = "290";
@@ -243,6 +243,8 @@ namespace ServerProvaTask
                     count++;
                 }
 
+                if (data == "Quit$")
+                    textboxinutileAEEW.Text = Convert.ToString(Convert.ToInt32(textboxinutileAEEW.Text) - 1);
                 
                 clientSocket.Send(msg);
             }
