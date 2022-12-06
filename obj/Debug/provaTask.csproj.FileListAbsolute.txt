@@ -9,4 +9,3 @@ C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTa
 C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.csproj.CoreCompileInputs.cache
 C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.exe
 C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.pdb
-C:\Users\fede0\OneDrive\Desktop\moretti_progetto_tep\provaTask\obj\Debug\provaTask.Form0.resources
