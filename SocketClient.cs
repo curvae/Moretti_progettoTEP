@@ -130,7 +130,7 @@ namespace provaTask
                     }
                     sender.Shutdown(SocketShutdown.Both);
                     sender.Close();
-                    label_score_p1.Text = "ciao";
+                    //label_score_p1.Text = "ciao";
                     }
                     catch (ArgumentNullException ane)
                     {
